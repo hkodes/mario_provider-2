@@ -1,0 +1,89 @@
+# varialbles
+@baseurl=http://ec2-52-196-238-46.ap-northeast-1.compute.amazonaws.com/api/provider
+@token=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vc2VydmljZW1hcmlvLnRlc3QvYXBpL3Byb3ZpZGVyL29hdXRoL3Rva2VuIiwiaWF0IjoxNjQwMTUzNzA3LCJleHAiOjE2NDA1MTM3MDcsIm5iZiI6MTY0MDE1MzcwNywianRpIjoiZHBZMEI4NHVpRzlKZjJCYiIsInN1YiI6NjYsInBydiI6ImIzNjhmYzBiNWEwYmU5ODFiMWQ5MGIxMDQ5NThlODY2YmRmNjBkNWIifQ.xlvnl4azsu-yV1xwRcW-LG9bHbhlWMQmv7suXa3RWp8
+
+
+
+###
+
+
+POST {{baseurl}}/register HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+
+{
+    "device_id" : "12313123",
+    "device_type" : "android",
+    "device_token" : "dfsdfsdf",
+    "first_name" : "test",
+    "last_name" : "test",
+    "email" : "test1@gmail.com",
+    "country_code" : "+977",
+    "mobile" : "8248057504",
+    "password" : "password",
+    "password_confirmation" : "password"
+}
+
+###
+POST {{baseurl}}/oauth/token HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+    "device_id" : "12313123",
+    "device_type" : "android",
+    "device_token" : "dfsdfsdf",
+    "mobile" : "9848810891",
+    "password" : "password"
+}
+
+###
+GET  {{baseurl}}/reasons HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+
+#### serive types
+GET {{baseurl}}/get-service HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+### update
+POST {{baseurl}}/create-update-service HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+{
+    "service_type": "1",
+    "service_number": "Test Service",
+    "service_model": "Electrician",
+    "price": 500,
+    "price_type": "HOURLY",
+    "skill_level_id": "3",
+    "service_type_from": "2",
+    "method": "update"
+}
+
+
+### Create
+POST {{baseurl}}/create-update-service HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+{
+    "service_type": "2",
+    "service_number": "Test Service",
+    "service_model": "Electrician",
+    "price": 500,
+    "price_type": "HOURLY",
+    "skill_level_id": "3"
+}
+
+### data to be sent ==> document -> (array of files), id -> (array of file id)
+## use postman to send file
+POST {{baseurl}}/profile/documents/store HTTP/1.1
